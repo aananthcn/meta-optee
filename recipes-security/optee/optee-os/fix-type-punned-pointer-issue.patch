@@ -1,0 +1,34 @@
+diff -Naur git_a/core/lib/libtomcrypt/src/mpa_desc.c git_b/core/lib/libtomcrypt/src/mpa_desc.c
+--- git_a/core/lib/libtomcrypt/src/mpa_desc.c	2016-12-10 09:11:47.522056600 +0530
++++ git_b/core/lib/libtomcrypt/src/mpa_desc.c	2016-12-10 09:19:46.731158175 +0530
+@@ -59,7 +59,7 @@
+ {
+ 	LTC_ARGCHKVD(a != NULL);
+ 
+-	mpa_free_static_temp_var((mpanum *) &a, external_mem_pool);
++	mpa_free_static_temp_var((mpanum *) a, external_mem_pool);
+ }
+ 
+ static int neg(void *a, void *b)
+@@ -488,7 +488,8 @@
+ 	LTC_ARGCHK(a != NULL);
+ 	LTC_ARGCHK(b != NULL);
+ 	LTC_ARGCHK(c != NULL);
+-	mpanum tmp;
++	void *tmp;
++
+ 	if (init((void **)&tmp) != CRYPT_OK) {
+ 		return CRYPT_MEM;
+ 	}
+diff -Naur git_a/lib/libzlib/inflate.c git_b/lib/libzlib/inflate.c
+--- git_a/lib/libzlib/inflate.c	2016-12-10 09:11:47.546056855 +0530
++++ git_b/lib/libzlib/inflate.c	2016-12-10 09:32:29.710639713 +0530
+@@ -1504,7 +1504,7 @@
+ {
+     struct inflate_state FAR *state;
+ 
+-    if (strm == Z_NULL || strm->state == Z_NULL) return -1L << 16;
++    if (strm == Z_NULL || strm->state == Z_NULL) return -1*(1L << 16);
+     state = (struct inflate_state FAR *)strm->state;
+     return ((long)(state->back) << 16) +
+         (state->mode == COPY ? state->length :

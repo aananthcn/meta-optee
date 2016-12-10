@@ -67,7 +67,8 @@ python () {
 inherit deploy
 inherit pythonnative
 
-SRC_URI = "git://github.com/OP-TEE/optee_os.git"
+SRC_URI = "git://github.com/OP-TEE/optee_os.git \
+            file://fix-type-punned-pointer-issue.patch"
 SRCREV = "2.2.0"
 PR = "r0"
 PV = "2.0.0+git${SRCPV}"
